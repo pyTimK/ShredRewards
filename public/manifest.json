@@ -1,6 +1,7 @@
 {
-  "name": "Next.JS Progressive Web App",
-  "short_name": "Next PWA",
+  "name": "ShredRewards",
+  "short_name": "ShredRewards",
+  "description": "ShredRewards.com is a platform that helps you track points earned from using our plastic garbage shredding and compacting machines. You can redeem your points for a variety of rewards. Join us in our mission to make the world a cleaner and greener place.",
   "theme_color": "#ffffff",
   "background_color": "#004740",
   "display": "fullscreen",

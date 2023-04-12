@@ -1,19 +1,26 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+}
+
+.main {
+  padding: 1rem 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.main {
-  padding: 5rem 0;
-  flex: 1;
+.header {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
 }
 
 .footer {
@@ -58,8 +65,8 @@
 }
 
 .description {
-  line-height: 1.5;
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .code {

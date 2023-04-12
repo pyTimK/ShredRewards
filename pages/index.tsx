@@ -1,17 +1,94 @@
-import styles from '../styles/Home.module.css'
+import { useRouter } from "next/router";
+import styles from "../styles/Home.module.css";
+import qr_decoder from "../function/qr_decoder";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import ParsedQR from "../classes/ParsedQR";
+import { Person, Coin } from "akar-icons";
+import SizedBox from "../Components/SizedBox";
+import MyContainer from "../Components/MyContainer";
+import MyButton from "../Components/MyButton";
+import PageTransition from "../Components/PageTransition";
+import AccountPushPage from "../push_pages/AccountPushPage";
 
-export default function Home() {
+interface HeaderProps {
+  setIsAccountPageOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const Header: React.FC<HeaderProps> = ({ setIsAccountPageOpen }) => {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+    <div className={styles.header}>
+      <Person
+        strokeWidth={2}
+        size={24}
+        onClick={() => setIsAccountPageOpen(true)}
+      />
+    </div>
+  );
+};
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+export default function Wrapper() {
+  const [isAccountPageOpen, setIsAccountPageOpen] = useState(false);
+  return (
+    <div
+      className={styles.container}
+      style={{ position: isAccountPageOpen ? "fixed" : "static" }}
+    >
+      <HomePage
+        isAccountPageOpen={isAccountPageOpen}
+        setIsAccountPageOpen={setIsAccountPageOpen}
+      />
+      {isAccountPageOpen && (
+        <AccountPushPage setIsAccountPageOpen={setIsAccountPageOpen} />
+      )}
+    </div>
+  );
+}
+
+interface HomePageProps {
+  isAccountPageOpen: boolean;
+  setIsAccountPageOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const HomePage: React.FC<HomePageProps> = ({
+  isAccountPageOpen,
+  setIsAccountPageOpen,
+}) => {
+  const [parsedQR, setParsedQR] = useState(new ParsedQR());
+  const router = useRouter();
+
+  useEffect(() => {
+    try {
+      const base64String = router.query.qr;
+      const parsed = qr_decoder(base64String);
+      setParsedQR(parsed);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [router.query.qr]);
+
+  return (
+    <div
+      style={{
+        pointerEvents: isAccountPageOpen ? "none" : "auto",
+      }}
+    >
+      <SizedBox height={30} />
+      <Header setIsAccountPageOpen={setIsAccountPageOpen} />
+      <SizedBox height={60} />
+      <MyContainer color="yellow">
+        <h1 className={styles.title}>1934</h1>
+        <p className={styles.description}>points</p>
+      </MyContainer>
+      <SizedBox height={60} />
+
+      <MyButton
+        backgroundColor="purple"
+        label="Claim Rewards"
+        onClick={() => console.log("clicked")}
+        icon={<Coin size={30} strokeWidth={1.5} />}
+      ></MyButton>
+      <main className={styles.main}>
+        <p className={styles.description}>{parsedQR.toString()}</p>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -52,10 +129,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
