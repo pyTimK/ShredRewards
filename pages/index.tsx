@@ -57,6 +57,7 @@ const HomePage: React.FC<HomePageProps> = ({
   const router = useRouter();
 
   useEffect(() => {
+    console.log(router.query);
     try {
       const base64String = router.query.qr;
       const parsed = qr_decoder(base64String);
