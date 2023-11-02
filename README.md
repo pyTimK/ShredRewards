@@ -1,23 +1,49 @@
-# Progressive Web App Example
+# ShredRewards
 
-This example uses [`next-pwa`](https://github.com/shadowwalker/next-pwa) to create a progressive web app (PWA) powered by [Workbox](https://developers.google.com/web/tools/workbox/).
+## Overview
+ShredRewards.com is a platform that helps you track points earned from using our plastic garbage shredding and compacting machines. You can redeem your points for a variety of rewards. Join us in our mission to make the world a cleaner and greener place.
 
-## Deploy your own
+## Technologies Used
+- NextJS
+- TypeScript
+- Firebase Hosting
+- Firebase Firestore
+- Firebase Authentication
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## Getting Started
+To run the website locally, you will need to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your computer. Then follow these steps:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app&project-name=progressive-web-app&repository-name=progressive-web-app)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example progressive-web-app progressive-web-app
-# or
-yarn create next-app --example progressive-web-app progressive-web-app
-# or
-pnpm create next-app --example progressive-web-app progressive-web-app
+1. Clone the repository
+```
+git clone https://github.com/pyTimK/ShredRewards.git
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+2. Install dependencies
+```
+cd ShredRewards
+npm install
+```
+
+3. Run the development server
+```
+npm run dev
+```
+
+Open http://localhost:3000 in your browser to see the website.
+
+## Deploying
+Deploy the website to Firebase Hosting using
+```
+firebase deploy
+```
+
+Open the URL provided in the Firebase console to see the deployed website.
+
+## Contributing
+If you find any issues or have ideas for new features, feel free to create a new issue or submit a pull request. We welcome contributions from the community.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+
+
